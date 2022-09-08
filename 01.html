@@ -1,0 +1,123 @@
+<script>
+  let arr = [
+    { id: 1, name: "零食", pid: 0, level: 1 },
+    { id: 2, name: "生活用品", pid: 0, level: 1 },
+    { id: 3, name: "攻城狮", pid: 0, level: 1 },
+
+    { id: 4, name: "方便面", pid: 1, level: 2 },
+    { id: 5, name: "汽水", pid: 1, level: 2 },
+    { id: 6, name: "薯条", pid: 1, level: 2 },
+
+    { id: 7, name: "床单", pid: 2, level: 2 },
+    { id: 8, name: "枕头", pid: 2, level: 2 },
+    { id: 9, name: "洗发水", pid: 2, level: 2 },
+
+    { id: 10, name: "WEB大前端", pid: 3, level: 2 },
+    { id: 11, name: "JAVA", pid: 3, level: 2 },
+    { id: 12, name: "PYTHON", pid: 3, level: 2 },
+
+    { id: 13, name: "JS变量", pid: 10, level: 3 },
+    { id: 14, name: "JS判断", pid: 10, level: 3 },
+    { id: 15, name: "JS循环", pid: 10, level: 3 },
+
+    { id: 16, name: "JAVA变量", pid: 11, level: 3 },
+    { id: 17, name: "JAVA判断", pid: 11, level: 3 },
+    { id: 18, name: "JAVA循环", pid: 11, level: 3 },
+
+    { id: 19, name: "JAVA变量", pid: 12, level: 3 },
+    { id: 20, name: "JAVA判断", pid: 12, level: 3 },
+    { id: 21, name: "JAVA循环", pid: 12, level: 3 },
+  ];
+
+  // 出口在哪里，函数要干什么
+
+  // 只要执行这个函数，那么就会遍历一遍arr
+  // id传入值
+  // 把 arr中 item.pid == id的 项 添加到child数组中
+  function findById(id) {
+    let child = [];
+    arr.forEach((item) => {
+      if (item.pid == id) {
+        child.push(item);
+      }
+    });
+    return child;
+  }
+
+  //默认id=0，有则替换
+  //每次执行这个函数，就会 遍历arr数组 把pid属性的值 === id的 项 加到一个名为 child 的数组中
+  function getTree(id = 0) {
+    //无限递归分级的准备，接受返回的child数组
+    let temp = findById(id);
+    //如果child数组 没有项 则退出函数
+    if (temp.length == 0) {
+      return null; //出口1
+    } else {
+      //如果有 则遍历child数组
+      temp.forEach((item) => {
+        let aa = getTree(item.id);
+        if (aa) {
+          // 如果有值 就将child数组 添加到children属性上
+          item["children"] = aa;
+        }
+      });
+      return temp; //出口2
+    }
+  }
+  console.log(getTree());
+
+  // 原理 循环套循环
+  // 原理 循环套循环
+  // 原理 循环套循环
+  // 原理 循环套循环
+  // 原理 循环套循环
+  let temp = [];
+  //第一轮
+  arr.forEach((item) => {
+    if (item.pid == 0) {
+      temp.push(item);
+
+      //第二轮
+      temp1 = [];
+      temp2 = [];
+      temp3 = [];
+      arr.forEach((item) => {
+        if (item.pid == 1) {
+          temp1.push(item);
+        }
+        if (item.pid == 2) {
+          temp2.push(item);
+        }
+        if (item.pid == 3) {
+          temp3.push(item);
+
+          //第三轮
+          temp4 = [];
+          temp5 = [];
+          temp6 = [];
+          arr.forEach((item) => {
+            if (item.pid == 10) {
+              temp4.push(item);
+            }
+            if (item.pid == 11) {
+              temp5.push(item);
+            }
+            if (item.pid == 12) {
+              temp6.push(item);
+            }
+          });
+        }
+      });
+    }
+  });
+
+  temp[0]["children"] = temp1;
+  temp[1]["children"] = temp2;
+  temp[2]["children"] = temp3;
+
+  temp[2].children[0]["children"] = temp4;
+  temp[2].children[1]["children"] = temp5;
+  temp[2].children[2]["children"] = temp6;
+
+  console.log(temp);
+</script>
