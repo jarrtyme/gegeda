@@ -1,0 +1,115 @@
+<template>
+  <div id="root">
+    <div class="todo-container">
+      <div class="todo-wrap">
+        <Myheader :addtode="addtodo" />
+        <Mul :todo="todos" :checkTodo="checkTodo" :vdelete="vdelete" />
+        <Myfooter
+          :todo="todos"
+          :xuanzhongall="xuanzhongall"
+          :shanchuall="shanchuall"
+          :n="n"
+        />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Myheader from "./components/1Myheader.vue";
+import Mul from "./components/2Mul.vue";
+import Myfooter from "./components/4Myfooter.vue";
+
+export default {
+  name: `App`,
+  components: { Myheader, Mul, Myfooter },
+  data() {
+    return {
+      todos: [
+        { id: "001", title: "抽烟", done: true },
+        { id: "002", title: "喝酒", done: false },
+        { id: "003", title: "开车", done: true },
+      ],
+    };
+  },
+  computed: {
+    n() {
+      let arr = [];
+      this.todos.forEach((a) => {
+        if (a.done) arr.push(1);
+      });
+      return arr.length;
+    },
+  },
+  methods: {
+    addtodo(a) {
+      this.todos.push(a);
+      console.log(this.todos);
+    },
+    checkTodo(id) {
+      this.todos.forEach((a) => {
+        if (a.id === id) a.done = !a.done;
+      });
+    },
+    vdelete(id) {
+      this.todos.forEach((a, i) => {
+        if (a.id === id) this.todos.splice(i, 1);
+      });
+    },
+    xuanzhongall(t) {
+      this.todos.forEach((a) => {
+        a.done = t;
+      });
+    },
+    shanchuall() {
+      let t = [];
+      this.todos.forEach((a) => {
+        if (!a.done) t.push(a);
+      });
+      this.todos = t;
+    },
+  },
+};
+</script>
+
+<style>
+/*base*/
+body {
+  background: #fff;
+}
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #da4f49;
+  border: 1px solid #bd362f;
+}
+.btn-danger:hover {
+  color: #fff;
+  background-color: #bd362f;
+}
+.btn:focus {
+  outline: none;
+}
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+</style>
+<!-- :shanchuall="shanchuall" -->
