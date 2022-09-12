@@ -1,12 +1,21 @@
 # gegeda
 
 https://github.com/jarrtyme/gegeda.git
-git config --global user.name "д�������"
-git config --global user.password "д�������"
-git config --global user.email "д�������" 
+
+git config --global user.name "jarrtyme"
+
+git config --global user.password "zks8112090"
+
+git config --global user.email "1045262349@qq.com" 
+
 git clone
-git add . �ݴ��ύ
-git commit -m �ϴ�����
-git push �ϴ�����
-git pull ��ȡ
-git status ���״̬
+
+git add .
+
+git commit -m"luncky"
+
+git push 
+
+git pull 
+
+git status 
