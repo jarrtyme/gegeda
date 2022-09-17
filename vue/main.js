@@ -9,6 +9,8 @@ import store from "./store";
 import VueRouter from "vue-router";
 // 引入路由器 默认用index文件
 import router from "./router";
+//引入插件
+import vueResource from "vue-resource";
 
 // 引入ElementUI组件库
 import ElementUI from "element-ui";
@@ -21,6 +23,8 @@ Vue.config.productionTip = false;
 Vue.use(ElementUI);
 // 应用 VueRouter 插件
 Vue.use(VueRouter);
+//使用插件
+Vue.use(vueResource);
 
 new Vue({
   router,

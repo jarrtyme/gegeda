@@ -1,0 +1,15 @@
+<template>
+  <div class="welcome">
+    <img src="@/assets/imgs/welcome.jpeg" alt="" />
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.welcome {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

@@ -1,3 +1,4 @@
+//引入vue文件
 import Vue from "vue";
 import App from "./App.vue";
 
@@ -16,13 +17,19 @@ import "element-ui/lib/theme-chalk/index.css";
 
 Vue.config.productionTip = false;
 
-// 使用ElementUI
+// 应用 ElementUI 插件
 Vue.use(ElementUI);
-// 应用插件
+// 导入全局样式
+import "@/assets/font/iconfont.css";
+// 应用 VueRouter 插件
 Vue.use(VueRouter);
 
 new Vue({
   router,
   store,
   render: (h) => h(App),
+  // 安装全局事件总线，$bus就是当前应用的vm
+  beforeCreate() {
+    Vue.prototype.$bus = this;
+  },
 }).$mount("#app");

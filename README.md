@@ -19,3 +19,7 @@ git push
 git pull 
 
 git status 
+
+fatal: unable to access
+
+git config --global http.sslVerify "false"
